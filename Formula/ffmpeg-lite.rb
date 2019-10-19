@@ -3,6 +3,7 @@ class FfmpegLite < Formula
   homepage "https://ffmpeg.org/"
   url "https://ffmpeg.org/releases/ffmpeg-4.2.1.tar.xz"
   sha256 "cec7c87e9b60d174509e263ac4011b522385fd0775292e1670ecc1180c9bb6d4"
+  revision 1
   head "https://github.com/FFmpeg/FFmpeg.git"
 
   depends_on "nasm" => :build
@@ -15,17 +16,9 @@ class FfmpegLite < Formula
   depends_on "gnutls"
   depends_on "lame"
   depends_on "libass"
-  depends_on "libbluray"
   depends_on "libsoxr"
-  depends_on "libvorbis"
-  depends_on "libvpx"
-  depends_on "opencore-amr"
-  depends_on "openjpeg"
-  depends_on "opus"
-  depends_on "sdl2"
   depends_on "snappy"
   depends_on "speex"
-  depends_on "theora"
   depends_on "x264"
   depends_on "x265"
   depends_on "xvid"
@@ -45,25 +38,16 @@ class FfmpegLite < Formula
       --enable-gnutls
       --enable-gpl
       --enable-libaom
-      --enable-libbluray
+      --disable-libbluray
       --enable-libmp3lame
-      --enable-libopus
-      --disable-librubberband
       --enable-libsnappy
-      --enable-libtheora
-      --enable-libvorbis
-      --enable-libvpx
       --enable-libx264
       --enable-libx265
       --enable-libxvid
-      --enable-lzma
       --enable-libfontconfig
       --enable-libfreetype
       --disable-frei0r
       --enable-libass
-      --enable-libopencore-amrnb
-      --enable-libopencore-amrwb
-      --enable-libopenjpeg
       --disable-librtmp
       --enable-libspeex
       --enable-videotoolbox
