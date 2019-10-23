@@ -4,6 +4,11 @@ class FfmpegLite < Formula
   url "https://ffmpeg.org/releases/ffmpeg-4.2.1.tar.xz"
   sha256 "cec7c87e9b60d174509e263ac4011b522385fd0775292e1670ecc1180c9bb6d4"
   head "https://github.com/FFmpeg/FFmpeg.git"
+  
+  bottle do
+    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/bottles"
+    sha256 "3db326afc50ccc7ab06f76d74e236b4881f63ab6fd09ad653e1a4837e909b8dd" => :high_sierra
+  end
 
   depends_on "nasm" => :build
   depends_on "pkg-config" => :build
