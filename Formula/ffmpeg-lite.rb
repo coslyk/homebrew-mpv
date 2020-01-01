@@ -1,14 +1,9 @@
 class FfmpegLite < Formula
   desc "Play, record, convert, and stream audio and video"
   homepage "https://ffmpeg.org/"
-  url "https://ffmpeg.org/releases/ffmpeg-4.2.1.tar.xz"
-  sha256 "cec7c87e9b60d174509e263ac4011b522385fd0775292e1670ecc1180c9bb6d4"
+  url "https://ffmpeg.org/releases/ffmpeg-4.2.2.tar.xz"
+  sha256 "cb754255ab0ee2ea5f66f8850e1bd6ad5cac1cd855d0a2f4990fb8c668b0d29c"
   head "https://github.com/FFmpeg/FFmpeg.git"
-  
-  bottle do
-    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/bottles"
-    sha256 "3db326afc50ccc7ab06f76d74e236b4881f63ab6fd09ad653e1a4837e909b8dd" => :high_sierra
-  end
 
   depends_on "nasm" => :build
   depends_on "pkg-config" => :build
@@ -29,6 +24,10 @@ class FfmpegLite < Formula
   depends_on "xz"
 
   def install
+    # Work around Xcode 11 clang bug
+    # https://bitbucket.org/multicoreware/x265/issues/514/wrong-code-generated-on-macos-1015
+    ENV.append_to_cflags "-fno-stack-check" if DevelopmentTools.clang_build_version >= 1010
+    
     args = %W[
       --prefix=#{prefix}
       --enable-shared
@@ -45,6 +44,7 @@ class FfmpegLite < Formula
       --disable-libbluray
       --enable-libmp3lame
       --enable-libsnappy
+      --enable-libsoxr
       --enable-libx264
       --enable-libx265
       --enable-libxvid
@@ -57,8 +57,6 @@ class FfmpegLite < Formula
       --enable-videotoolbox
       --disable-libjack
       --disable-indev=jack
-      --enable-libaom
-      --enable-libsoxr
     ]
 
     system "./configure", *args
@@ -67,6 +65,9 @@ class FfmpegLite < Formula
     # Build and install additional FFmpeg tools
     system "make", "alltools"
     bin.install Dir["tools/*"].select { |f| File.executable? f }
+    
+    # Fix for Non-executables that were installed to bin/
+    mv bin/"python", pkgshare/"python", :force => true
   end
 
   test do

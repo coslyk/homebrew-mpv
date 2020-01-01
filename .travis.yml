@@ -17,8 +17,8 @@ before_cache:
   
 script:
   - brew install --build-bottle ffmpeg-lite
-  - brew bottle ffmpeg-lite
   - brew install --build-bottle mpv-lite
+  - brew bottle ffmpeg-lite
   - brew bottle mpv-lite
 
 

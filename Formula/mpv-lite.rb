@@ -1,14 +1,9 @@
 class MpvLite < Formula
   desc "Media player based on MPlayer and mplayer2"
   homepage "https://mpv.io"
-  url "https://github.com/mpv-player/mpv/archive/v0.29.1.tar.gz"
-  sha256 "f9f9d461d1990f9728660b4ccb0e8cb5dce29ccaa6af567bec481b79291ca623"
+  url "https://github.com/mpv-player/mpv/archive/v0.31.0.tar.gz"
+  sha256 "805a3ac8cf51bfdea6087a6480c18835101da0355c8e469b6d488a1e290585a5"
   head "https://github.com/mpv-player/mpv.git"
-  
-  bottle do
-    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/bottles"
-    sha256 "055c75d33d6d79baf58197120fa4cfb119b3c6edfcb91d091c4d282f81e7ffd2" => :high_sierra
-  end
 
   depends_on "pkg-config" => :build
 
@@ -37,9 +32,6 @@ class MpvLite < Formula
     system "./bootstrap.py"
     system "python", "waf", "configure", *args
     system "python", "waf", "install"
-    
-    system "python", "TOOLS/osxbundle.py", "build/mpv"
-    prefix.install "build/mpv.app"
   end
 
   test do
