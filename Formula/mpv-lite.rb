@@ -1,14 +1,9 @@
 class MpvLite < Formula
   desc "Media player based on MPlayer and mplayer2"
   homepage "https://mpv.io"
-  url "https://github.com/mpv-player/mpv/archive/v0.31.0.tar.gz"
-  sha256 "805a3ac8cf51bfdea6087a6480c18835101da0355c8e469b6d488a1e290585a5"
+  url "https://github.com/mpv-player/mpv/archive/v0.32.0.tar.gz"
+  sha256 "9163f64832226d22e24bbc4874ebd6ac02372cd717bef15c28a0aa858c5fe592"
   head "https://github.com/mpv-player/mpv.git"
-  
-  bottle do
-    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/bottles"
-    sha256 "41d4d7954ea702a273c7063a1ccd1765f5bc787ecc840432cab04666f92fe177" => :high_sierra
-  end
 
   depends_on "pkg-config" => :build
 
@@ -28,6 +23,7 @@ class MpvLite < Formula
       --enable-libmpv-shared
       --disable-swift
       --disable-debug-build
+      --disable-macos-media-player
       --confdir=#{etc}/mpv
       --datadir=#{pkgshare}
       --mandir=#{man}

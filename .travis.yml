@@ -1,6 +1,10 @@
 os: osx
 language: c
 
+branches:
+except:
+  - /^untagged/
+
 addons:
   homebrew:
     taps: coslyk/mpv
