@@ -4,6 +4,11 @@ class MpvLite < Formula
   url "https://github.com/mpv-player/mpv/archive/v0.32.0.tar.gz"
   sha256 "9163f64832226d22e24bbc4874ebd6ac02372cd717bef15c28a0aa858c5fe592"
   head "https://github.com/mpv-player/mpv.git"
+  
+  bottle do
+    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/bottles"
+    sha256 "3aff5b9b82c82562eae31a47ef72c87d374a8098bd1a405b541319cca57a7029" => :high_sierra
+  end
 
   depends_on "pkg-config" => :build
 
