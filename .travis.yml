@@ -1,10 +1,6 @@
 os: osx
 language: c
 
-branches:
-except:
-  - /^untagged/
-
 addons:
   homebrew:
     taps: coslyk/mpv
@@ -19,24 +15,30 @@ before_cache:
   - brew cleanup
 
   
-script:
+before_install:
   # Uninstall all existing packages to avoid conflicts
   - brew remove --force $(brew list) --ignore-dependencies
+
+install:
+  # Install dependencies
+  - brew install nasm pkg-config texi2html aom fontconfig freetype gnutls lame libass libsoxr snappy speex x264 x265 xvid xz jpeg little-cms2
+
+script:
+  # Compile ffmpeg
   - brew install -v --build-bottle ffmpeg-lite
+  # Compile mpv
   - brew install -v --build-bottle mpv-lite
+  # Build bottles
   - brew bottle ffmpeg-lite
   - brew bottle mpv-lite
 
 
-deploy:
-  provider: releases
-  skip_cleanup: true
-  overwrite: true
-  api_key:
-    secure: Egmn7XFFekOQrlSkYyDJXgh9NVFobGAzp5SRNo2Ug/uKtK8XT0sh93WVC1LIvFixsmIuFY1Nd1Ay8otj4LG0l6wyUifvCQJ2F6CxCRM9d/cmhxwLvNWl4/8eKHBigW12hlkDvmT+zKT8prHH+Ro+Wj94looai7cJWtPjr35t4vN2P2MzyBMrWQR2aeiCYpQuuUMBt8H31tWm16CihtXZI7BJtaQXKZAV9ksFVd7wlqc5q2KTuryhhcZ1xBLebiIJFFxOOJLtvv3wnFFiVc6fOwl0BhdTpCZU9FHsKarVT9fH8J2lGwrOi4hF3R1pBvCpAasOHu/VuEq7epaodqUYYfJZKfOwAGtkUhTiRdVwLtMqOChbLXcfOsc5RGU99fHiOlssABA+98s6MMJn/0aJU+Y+CNtkKoiYJxMpeFugxo+qnkMb/PBDBfALQl3ES9QRfN1J3mClbLulNvrKHhEekMyyZCA9ixk5wl0VniI2lFqhqr0Og6GJ7KDIW6JR1GHg1oCQ7++zGdFrVbOmiNQmJ3wX4xZjHUcdUhmXsAURUPVlx/G2MHfWiMuip94F4T0mzLn9uvqyBJz4DSvzGhAjN7/TPuM0E2jJSVycJa7X37DiZHr8IeMkfFK2q5tJY0PRRQToyx4T8ZXiic0vRRI2OijnqHmFibJwyUJzD71eXT0=
-  file:
-    - ffmpeg-*.tar.gz
-    - mpv-*.tar.gz
-  file_glob: true
-  on:
-    repo: coslyk/homebrew-mpv
+# Upload bottles
+after_success:
+  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+  - bash upload.sh *.tar.gz
+
+branches:
+  except:
+    - # Do not build tags that we create when we upload to GitHub Releases
+    - /^(?i:continuous.*)$/
