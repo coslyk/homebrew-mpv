@@ -21,6 +21,7 @@ before_cache:
   
 script:
   # Uninstall homebrewed python2 to avoid conflicts
+  - brew list
   - if brew list | grep python@2; then brew uninstall python@2; fi
   - brew install -v --build-bottle ffmpeg-lite
   - brew install -v --build-bottle mpv-lite
