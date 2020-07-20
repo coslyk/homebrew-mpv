@@ -1,14 +1,10 @@
 class FfmpegLite < Formula
   desc "Play, record, convert, and stream audio and video"
   homepage "https://ffmpeg.org/"
-  url "https://ffmpeg.org/releases/ffmpeg-4.2.2.tar.xz"
-  sha256 "cb754255ab0ee2ea5f66f8850e1bd6ad5cac1cd855d0a2f4990fb8c668b0d29c"
+  url "https://ffmpeg.org/releases/ffmpeg-4.3.1.tar.xz"
+  sha256 "ad009240d46e307b4e03a213a0f49c11b650e445b1f8be0dda2a9212b34d2ffb"
+  license "GPL-2.0"
   head "https://github.com/FFmpeg/FFmpeg.git"
-  
-  bottle do
-    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/bottles"
-    sha256 "8234d6203d4854bd42cd3294a2337e17d1350228d2c996d6e0576b9d40fd3241" => :high_sierra
-  end
 
   depends_on "nasm" => :build
   depends_on "pkg-config" => :build
@@ -32,10 +28,6 @@ class FfmpegLite < Formula
   uses_from_macos "zlib"
 
   def install
-    # Work around Xcode 11 clang bug
-    # https://bitbucket.org/multicoreware/x265/issues/514/wrong-code-generated-on-macos-1015
-    ENV.append_to_cflags "-fno-stack-check" if DevelopmentTools.clang_build_version >= 1010
-    
     args = %W[
       --prefix=#{prefix}
       --enable-shared
