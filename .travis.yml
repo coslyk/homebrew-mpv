@@ -1,18 +1,24 @@
 os: osx
 language: c
 
+jobs:
+  include:
+    - name: macOS 10.13
+      os: osx
+      osx_image: xcode10.1
+
+    - name: macOS 10.14
+      os: osx
+      osx_image: xcode11.3
+    
+    - name: macOS 10.15
+      os: osx
+      osx_image: xcode12
+
 addons:
   homebrew:
     taps: coslyk/mpv
     update: true
-
-
-cache:
-  directories:
-    - $HOME/Library/Caches/Homebrew
-
-before_cache:
-  - brew cleanup
 
   
 before_install:

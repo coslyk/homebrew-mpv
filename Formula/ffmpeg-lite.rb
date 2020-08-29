@@ -6,11 +6,6 @@ class FfmpegLite < Formula
   license "GPL-2.0"
   head "https://github.com/FFmpeg/FFmpeg.git"
 
-  bottle do
-    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
-    sha256 "0c26ee10d0795873580d23d2ff9f6cadc5601d31a930a7fcac71a093445d6f64" => :high_sierra
-  end
-
   depends_on "nasm" => :build
   depends_on "pkg-config" => :build
   depends_on "texi2html" => :build
@@ -72,7 +67,7 @@ class FfmpegLite < Formula
     bin.install Dir["tools/*"].select { |f| File.executable? f }
     
     # Fix for Non-executables that were installed to bin/
-    mv bin/"python", pkgshare/"python", :force => true
+    mv bin/"python", pkgshare/"python", force: true
   end
 
   test do

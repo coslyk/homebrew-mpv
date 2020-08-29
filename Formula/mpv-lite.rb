@@ -5,11 +5,6 @@ class MpvLite < Formula
   sha256 "9163f64832226d22e24bbc4874ebd6ac02372cd717bef15c28a0aa858c5fe592"
   head "https://github.com/mpv-player/mpv.git"
 
-  bottle do
-    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
-    sha256 "9a36a9d7b07d87f89824b0ad4b349174f242b0c2d577d1a100f963f9e248b34b" => :high_sierra
-  end
-
   depends_on "pkg-config" => :build
 
   depends_on "ffmpeg-lite"
