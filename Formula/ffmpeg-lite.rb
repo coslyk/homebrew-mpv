@@ -6,63 +6,48 @@ class FfmpegLite < Formula
   license "GPL-2.0"
   head "https://github.com/FFmpeg/FFmpeg.git"
 
-  bottle do
-    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
-    sha256 "a34f4921cf9e7b0aeec96311782320323d1577b1be7ab13253cbc4cffdba6ec5" => :high_sierra
-    sha256 "f5faa12a788749bfee0250ca62c2d9ecedce68eaf252b1d79032933906a1832d" => :mojave
-    sha256 "64c0e21cf269f6150b9659965d36458a0605c6f6bfa8ed1c1607833f59016436" => :catalina
-  end
-
   depends_on "nasm" => :build
   depends_on "pkg-config" => :build
   depends_on "texi2html" => :build
 
-  depends_on "aom"
   depends_on "fontconfig"
   depends_on "freetype"
   depends_on "gnutls"
-  depends_on "lame"
   depends_on "libass"
   depends_on "libsoxr"
   depends_on "snappy"
   depends_on "speex"
-  depends_on "x264"
-  depends_on "x265"
-  depends_on "xvid"
   depends_on "xz"
 
   uses_from_macos "bzip2"
+  uses_from_macos "libxml2"
   uses_from_macos "zlib"
 
   def install
     args = %W[
       --prefix=#{prefix}
-      --enable-shared
-      --enable-pthreads
-      --enable-version3
-      --enable-hardcoded-tables
-      --enable-avresample
       --cc=#{ENV.cc}
       --host-cflags=#{ENV.cflags}
       --host-ldflags=#{ENV.ldflags}
-      --enable-gnutls
+      --enable-shared
       --enable-gpl
-      --enable-libaom
-      --disable-libbluray
-      --enable-libmp3lame
-      --enable-libsnappy
-      --enable-libsoxr
-      --enable-libx264
-      --enable-libx265
-      --enable-libxvid
+      --enable-version3
+      --enable-avresample
+      --enable-gnutls
+      --enable-hardcoded-tables
+      --enable-libass
       --enable-libfontconfig
       --enable-libfreetype
-      --disable-frei0r
-      --enable-libass
-      --disable-librtmp
+      --enable-libsnappy
+      --enable-libsoxr
       --enable-libspeex
+      --enable-libxml2
+      --enable-pthreads
       --enable-videotoolbox
+      --disable-frei0r
+      --disable-libbluray
       --disable-libjack
+      --disable-librtmp
       --disable-indev=jack
     ]
 
