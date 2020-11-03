@@ -13,7 +13,7 @@ jobs:
     
     - name: macOS 10.15
       os: osx
-      osx_image: xcode12
+      osx_image: xcode12.2
 
 addons:
   homebrew:
@@ -27,7 +27,7 @@ before_install:
 
 install:
   # Install dependencies
-  - brew install nasm pkg-config texi2html aom fontconfig freetype gnutls lame libass libsoxr snappy speex x264 x265 xvid xz jpeg little-cms2
+  - brew install nasm pkg-config texi2html fontconfig freetype gnutls libass libsoxr snappy speex xz jpeg little-cms2
 
 script:
   # Compile ffmpeg
