@@ -3,10 +3,6 @@ language: c
 
 jobs:
   include:
-    - name: macOS 10.13
-      os: osx
-      osx_image: xcode10.1
-
     - name: macOS 10.14
       os: osx
       osx_image: xcode11.3
@@ -27,7 +23,7 @@ before_install:
 
 install:
   # Install dependencies
-  - brew install nasm pkg-config texi2html fontconfig freetype gnutls libass libsoxr snappy speex xz jpeg little-cms2
+  - brew install nasm pkg-config python@3.9 fontconfig freetype gnutls libass libsoxr snappy speex xz jpeg little-cms2
 
 script:
   # Compile ffmpeg
