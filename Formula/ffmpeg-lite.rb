@@ -6,6 +6,13 @@ class FfmpegLite < Formula
   license "GPL-2.0"
   head "https://github.com/FFmpeg/FFmpeg.git"
 
+  bottle do
+    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
+    rebuild 2
+    sha256 "0c7b764e42b9b73ea6806a377a2f66de2a4c3b53243fc5dbd718df7d4ea93a54" => :mojave
+    sha256 "60f9ae7cd4f6c9163d937f78a44faa15a40ed04a51a4d438fcfaafbf0beea5b5" => :catalina
+  end
+
   depends_on "nasm" => :build
   depends_on "pkg-config" => :build
 

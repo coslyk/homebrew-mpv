@@ -5,6 +5,12 @@ class MpvLite < Formula
   sha256 "f1b9baf5dc2eeaf376597c28a6281facf6ed98ff3d567e3955c95bf2459520b4"
   head "https://github.com/mpv-player/mpv.git"
 
+  bottle do
+    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
+    sha256 "e27c1e010f4f246d26038b227f5b4d6ecf1eb98734cc4f5ab8296e060202e279" => :mojave
+    sha256 "dbdb1d0f188cc579110d04e7882ef11fadd8550ab18c320fb7e695594eaba304" => :catalina
+  end
+
   depends_on "pkg-config" => :build
   depends_on "python@3.9" => :build
 
