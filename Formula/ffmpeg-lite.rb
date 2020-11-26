@@ -43,6 +43,7 @@ class FfmpegLite < Formula
       --enable-libxml2
       --enable-pthreads
       --enable-videotoolbox
+	    --disable-encoders
       --disable-frei0r
       --disable-libbluray
       --disable-libjack
