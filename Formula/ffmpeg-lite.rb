@@ -1,17 +1,15 @@
 class FfmpegLite < Formula
   desc "Play, record, convert, and stream audio and video"
   homepage "https://ffmpeg.org/"
-  url "https://ffmpeg.org/releases/ffmpeg-4.3.1.tar.xz"
-  sha256 "ad009240d46e307b4e03a213a0f49c11b650e445b1f8be0dda2a9212b34d2ffb"
   license "GPL-2.0"
   head "https://github.com/FFmpeg/FFmpeg.git"
 
-  bottle do
-    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
-    rebuild 2
-    sha256 "0c7b764e42b9b73ea6806a377a2f66de2a4c3b53243fc5dbd718df7d4ea93a54" => :mojave
-    sha256 "60f9ae7cd4f6c9163d937f78a44faa15a40ed04a51a4d438fcfaafbf0beea5b5" => :catalina
+  stable do
+    url "https://ffmpeg.org/releases/ffmpeg-4.3.2.tar.xz"
+    sha256 "46e4e64f1dd0233cbc0934b9f1c0da676008cad34725113fb7f802cfa84ccddb"
   end
+
+  keg_only "it is intended to only be used for building MoonPlayer. This formula is not recommended for daily use"
 
   depends_on "nasm" => :build
   depends_on "pkg-config" => :build
@@ -50,12 +48,13 @@ class FfmpegLite < Formula
       --enable-libxml2
       --enable-pthreads
       --enable-videotoolbox
-	    --disable-encoders
+      --disable-encoders
       --disable-frei0r
       --disable-libbluray
       --disable-libjack
       --disable-librtmp
       --disable-indev=jack
+      --enable-encoder=png
     ]
 
     system "./configure", *args
