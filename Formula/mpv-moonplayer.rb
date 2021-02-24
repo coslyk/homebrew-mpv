@@ -1,4 +1,4 @@
-class MpvLite < Formula
+class MpvMoonplayer < Formula
   desc "Media player based on MPlayer and mplayer2"
   homepage "https://mpv.io"
   url "https://github.com/mpv-player/mpv/archive/v0.33.0.tar.gz"
@@ -10,7 +10,7 @@ class MpvLite < Formula
   depends_on "pkg-config" => :build
   depends_on "python@3.9" => :build
 
-  depends_on "ffmpeg-lite"
+  depends_on "ffmpeg-moonplayer"
   depends_on "jpeg"
   depends_on "libass"
   depends_on "little-cms2"

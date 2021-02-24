@@ -1,4 +1,4 @@
-class FfmpegLite < Formula
+class FfmpegMoonplayer < Formula
   desc "Play, record, convert, and stream audio and video"
   homepage "https://ffmpeg.org/"
   license "GPL-2.0"

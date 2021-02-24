@@ -27,12 +27,12 @@ install:
 
 script:
   # Compile ffmpeg
-  - brew install -v --build-bottle ffmpeg-lite
+  - brew install -v --build-bottle ffmpeg-moonplayer
   # Compile mpv
-  - brew install -v --build-bottle mpv-lite
+  - brew install -v --build-bottle mpv-moonplayer
   # Build bottles
-  - brew bottle ffmpeg-lite
-  - brew bottle mpv-lite
+  - brew bottle ffmpeg-moonplayer
+  - brew bottle mpv-moonplayer
 
 
 # Upload bottles
