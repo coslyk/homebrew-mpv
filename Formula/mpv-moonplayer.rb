@@ -5,6 +5,12 @@ class MpvMoonplayer < Formula
   sha256 "f1b9baf5dc2eeaf376597c28a6281facf6ed98ff3d567e3955c95bf2459520b4"
   head "https://github.com/mpv-player/mpv.git"
 
+  bottle do
+    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
+    sha256 mojave: "76e4ee5f67b1a8a749979b528283c10b814f1e8f10b88a355d8a6fa5a3d069c6"
+    sha256 catalina: "df8aa3795f952a84ba3c2f9d645f133118dd7582ceb0cab6b8a2a2fbb35a4df0"
+  end
+
   keg_only "it is intended to only be used for building MoonPlayer. This formula is not recommended for daily use"
 
   depends_on "pkg-config" => :build
