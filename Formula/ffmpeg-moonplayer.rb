@@ -5,14 +5,8 @@ class FfmpegMoonplayer < Formula
   head "https://github.com/FFmpeg/FFmpeg.git"
 
   stable do
-    url "https://ffmpeg.org/releases/ffmpeg-4.4.tar.xz"
-    sha256 "06b10a183ce5371f915c6bb15b7b1fffbe046e8275099c96affc29e17645d909"
-  end
-  
-  bottle do
-    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
-    sha256 mojave: "d1279e5301e3951471ac0aea8f18b9fcc4a21efff18da31d9c2df49dd998607b"
-    sha256 catalina: "32b698d1ad99a98d3b7ad263be47780c28987b6d251e66dc15e23d99c63c5e7c"
+    url "https://ffmpeg.org/releases/ffmpeg-4.4.1.tar.xz"
+    sha256 "eadbad9e9ab30b25f5520fbfde99fae4a92a1ae3c0257a8d68569a4651e30e02"
   end
 
   keg_only "it is intended to only be used for building MoonPlayer. This formula is not recommended for daily use"
@@ -42,7 +36,6 @@ class FfmpegMoonplayer < Formula
       --enable-shared
       --enable-gpl
       --enable-version3
-      --enable-avresample
       --enable-gnutls
       --enable-hardcoded-tables
       --enable-libass
