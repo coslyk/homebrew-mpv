@@ -9,6 +9,12 @@ class FfmpegMoonplayer < Formula
     sha256 "eadbad9e9ab30b25f5520fbfde99fae4a92a1ae3c0257a8d68569a4651e30e02"
   end
 
+  bottle do
+    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
+    rebuild 1
+    sha256 catalina: "339bc345699baa22583b17e237da9fea2f1579846e8bc2a61e17a8158e827030"
+  end
+
   keg_only "it is intended to only be used for building MoonPlayer. This formula is not recommended for daily use"
 
   depends_on "nasm" => :build
