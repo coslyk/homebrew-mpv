@@ -5,19 +5,12 @@ class FfmpegMoonplayer < Formula
   head "https://github.com/FFmpeg/FFmpeg.git"
 
   stable do
-    url "https://ffmpeg.org/releases/ffmpeg-4.4.1.tar.xz"
-    sha256 "eadbad9e9ab30b25f5520fbfde99fae4a92a1ae3c0257a8d68569a4651e30e02"
-  end
-
-  bottle do
-    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
-    rebuild 1
-    sha256 catalina: "339bc345699baa22583b17e237da9fea2f1579846e8bc2a61e17a8158e827030"
+    url "https://ffmpeg.org/releases/ffmpeg-5.1.2.tar.xz"
+    sha256 "619e706d662c8420859832ddc259cd4d4096a48a2ce1eefd052db9e440eef3dc"
   end
 
   keg_only "it is intended to only be used for building MoonPlayer. This formula is not recommended for daily use"
 
-  depends_on "nasm" => :build
   depends_on "pkg-config" => :build
 
   depends_on "fontconfig"
@@ -28,6 +21,10 @@ class FfmpegMoonplayer < Formula
   depends_on "snappy"
   depends_on "speex"
   depends_on "xz"
+
+  on_intel do
+    depends_on "nasm" => :build
+  end
 
   uses_from_macos "bzip2"
   uses_from_macos "libxml2"
@@ -61,6 +58,8 @@ class FfmpegMoonplayer < Formula
       --disable-indev=jack
       --enable-encoder=png
     ]
+
+    args << "--enable-neon" if Hardware::CPU.arm?
 
     system "./configure", *args
     system "make", "install"

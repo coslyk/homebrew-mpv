@@ -1,20 +1,14 @@
 class MpvMoonplayer < Formula
   desc "Media player based on MPlayer and mplayer2"
   homepage "https://mpv.io"
-  url "https://github.com/mpv-player/mpv/archive/v0.34.0.tar.gz"
-  sha256 "f654fb6275e5178f57e055d20918d7d34e19949bc98ebbf4a7371902e88ce309"
+  url "https://github.com/mpv-player/mpv/archive/v0.35.0.tar.gz"
+  sha256 "dc411c899a64548250c142bf1fa1aa7528f1b4398a24c86b816093999049ec00"
   head "https://github.com/mpv-player/mpv.git"
-
-  bottle do
-    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
-    rebuild 1
-    sha256 catalina: "76e8e0fc719c47ca764ac0e2ecc4d25c3f9fb4160dcd22c5a983de279e71de25"
-  end
   
   keg_only "it is intended to only be used for building MoonPlayer. This formula is not recommended for daily use"
 
   depends_on "pkg-config" => :build
-  depends_on "python@3.9" => :build
+  depends_on "python@3.10" => :build
 
   depends_on "ffmpeg-moonplayer"
   depends_on "jpeg"
