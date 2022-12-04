@@ -4,6 +4,13 @@ class MpvMoonplayer < Formula
   url "https://github.com/mpv-player/mpv/archive/v0.35.0.tar.gz"
   sha256 "dc411c899a64548250c142bf1fa1aa7528f1b4398a24c86b816093999049ec00"
   head "https://github.com/mpv-player/mpv.git"
+
+  bottle do
+    rebuild 1
+    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
+    sha256 catalina: "bb1dca44c1f14d40e8f8f96356943ab46d5d0885a7f2e5d4fb02cdf57dd009d9"
+    sha256 monterey: "1b438e52568467087326511d49d1d8156d9f175b87fb07550bc40e9421a0972d"
+  end
   
   keg_only "it is intended to only be used for building MoonPlayer. This formula is not recommended for daily use"
 
