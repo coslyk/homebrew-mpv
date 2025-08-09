@@ -32,7 +32,7 @@ class MpvMoonplayer < Formula
 
     args = %W[
       -Dhtml-build=disabled
-      -Djavascript=enabled
+      -Djavascript=disabled
       -Dlibmpv=true
       -Dcplayer=false
       -Dmanpage-build=disabled
