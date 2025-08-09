@@ -24,7 +24,7 @@ jobs:
           brew tap coslyk/mpv
           brew developer on
           brew update
-          brew install nasm pkg-config fontconfig freetype gnutls libass libsoxr snappy speex xz jpeg-turbo little-cms2
+          brew install nasm pkg-config fontconfig freetype gnutls libass libsoxr snappy speex xz jpeg-turbo little-cms2 docutils meson ninja libplacebo
 
       - name: Build packages
         run: |-

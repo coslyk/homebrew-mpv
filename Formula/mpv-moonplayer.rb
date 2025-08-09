@@ -14,6 +14,7 @@ class MpvMoonplayer < Formula
   depends_on xcode: :build
 
   depends_on "ffmpeg-moonplayer"
+  depends_on "libplacebo"
   depends_on "jpeg-turbo"
   depends_on "libass"
   depends_on "little-cms2"
@@ -43,7 +44,7 @@ class MpvMoonplayer < Formula
     ]
     
     system "meson", "setup", "build", *args, *std_meson_args
-    system "meson", "compile", "-C", "build", "--verbose"
+    system "meson", "compile", "-C", "build"
     system "meson", "install", "-C", "build"
   end
 
