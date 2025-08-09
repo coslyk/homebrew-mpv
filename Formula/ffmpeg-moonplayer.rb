@@ -5,15 +5,8 @@ class FfmpegMoonplayer < Formula
   head "https://github.com/FFmpeg/FFmpeg.git"
 
   stable do
-    url "https://ffmpeg.org/releases/ffmpeg-5.1.2.tar.xz"
-    sha256 "619e706d662c8420859832ddc259cd4d4096a48a2ce1eefd052db9e440eef3dc"
-  end
-
-  bottle do
-    rebuild 1
-    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
-    sha256 catalina: "6fe47cf84c3f65598e4b6a38ee6f7fda6b8cb1c1510c983bcc79c39d97ee7dc2"
-    sha256 monterey: "88ac5ac85221b523ec9959701b666e0551eddb33b78a190bdcfcfaac381c1a6a"
+    url "https://ffmpeg.org/releases/ffmpeg-7.1.1.tar.xz"
+    sha256 "733984395e0dbbe5c046abda2dc49a5544e7e0e1e2366bba849222ae9e3a03b1"
   end
 
   keg_only "it is intended to only be used for building MoonPlayer. This formula is not recommended for daily use"
@@ -57,6 +50,7 @@ class FfmpegMoonplayer < Formula
       --enable-libxml2
       --enable-pthreads
       --enable-videotoolbox
+      --enable-audiotoolbox
       --disable-encoders
       --disable-frei0r
       --disable-libbluray
@@ -67,16 +61,15 @@ class FfmpegMoonplayer < Formula
     ]
 
     args << "--enable-neon" if Hardware::CPU.arm?
+    args << "--cc=#{ENV.cc}" if Hardware::CPU.intel?
 
     system "./configure", *args
     system "make", "install"
 
     # Build and install additional FFmpeg tools
     system "make", "alltools"
-    bin.install Dir["tools/*"].select { |f| File.executable? f }
-    
-    # Fix for Non-executables that were installed to bin/
-    mv bin/"python", pkgshare/"python", force: true
+    bin.install (buildpath/"tools").children.select { |f| f.file? && f.executable? }
+    pkgshare.install buildpath/"tools/python"
   end
 
   test do

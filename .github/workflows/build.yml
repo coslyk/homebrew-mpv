@@ -10,7 +10,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-12, macos-10.15]
+        os: [macos-13, macos-13-xlarge, macos-15-large]
 
     steps:
       - uses: actions/checkout@v2
@@ -22,8 +22,9 @@ jobs:
           HOMEBREW_NO_AUTO_UPDATE: 1
         run: |-
           brew tap coslyk/mpv
+          brew developer on
           brew update
-          brew install nasm pkg-config python@3.9 fontconfig freetype gnutls libass libsoxr snappy speex xz jpeg little-cms2
+          brew install nasm pkg-config fontconfig freetype gnutls libass libsoxr snappy speex xz jpeg-turbo little-cms2
 
       - name: Build packages
         run: |-
