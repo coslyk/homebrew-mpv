@@ -21,6 +21,10 @@ class MpvMoonplayer < Formula
 
   uses_from_macos "zlib"
 
+  on_ventura :or_older do
+    depends_on "lld" => :build
+  end
+
   def install
     # LANG is unset by default on macOS and causes issues when calling getlocale
     # or getdefaultlocale in docutils. Force the default c/posix locale since
@@ -29,6 +33,11 @@ class MpvMoonplayer < Formula
 
     # force meson find ninja from homebrew
     ENV["NINJA"] = which("ninja")
+
+    if OS.mac? && MacOS.version <= :ventura
+      ENV.append "LDFLAGS", "-fuse-ld=lld"
+      ENV.O1 # -Os is not supported for lld and we don't have ENV.O2
+    end
 
     args = %W[
       -Dhtml-build=disabled
