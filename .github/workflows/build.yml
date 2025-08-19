@@ -13,7 +13,7 @@ jobs:
         os: [macos-13, macos-14]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
         with:
           submodules: true
 
@@ -26,6 +26,14 @@ jobs:
           brew update
           brew install nasm pkg-config fontconfig freetype gnutls libass libsoxr snappy speex xz jpeg-turbo little-cms2 docutils meson ninja libplacebo
 
+      - name: Install lld
+        if: matrix.os == 'macos-13'
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: 1
+        run: |-
+          find /usr/local/bin -lname '*/Library/Frameworks/Python.framework/*' -delete
+          brew install lld
+          
       - name: Build packages
         run: |-
           brew install -v --build-bottle ffmpeg-moonplayer
