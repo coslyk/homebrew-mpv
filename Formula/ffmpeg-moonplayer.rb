@@ -5,18 +5,19 @@ class FfmpegMoonplayer < Formula
   head "https://github.com/FFmpeg/FFmpeg.git"
 
   stable do
-    url "https://ffmpeg.org/releases/ffmpeg-7.1.1.tar.xz"
-    sha256 "733984395e0dbbe5c046abda2dc49a5544e7e0e1e2366bba849222ae9e3a03b1"
+    url "https://ffmpeg.org/releases/ffmpeg-8.0.tar.xz"
+    sha256 "b2751fccb6cc4c77708113cd78b561059b6fa904b24162fa0be2d60273d27b8e"
   end
 
   keg_only "it is intended to only be used for building MoonPlayer. This formula is not recommended for daily use"
 
-  depends_on "pkg-config" => :build
+  depends_on "pkgconf" => :build
 
   depends_on "fontconfig"
   depends_on "freetype"
   depends_on "gnutls"
   depends_on "libass"
+  depends_on "harfbuzz"
   depends_on "libsoxr"
   depends_on "snappy"
   depends_on "speex"
@@ -44,6 +45,7 @@ class FfmpegMoonplayer < Formula
       --enable-libass
       --enable-libfontconfig
       --enable-libfreetype
+      --enable-libharfbuzz
       --enable-libsnappy
       --enable-libsoxr
       --enable-libspeex
@@ -76,6 +78,6 @@ class FfmpegMoonplayer < Formula
     # Create an example mp4 file
     mp4out = testpath/"video.mp4"
     system bin/"ffmpeg", "-filter_complex", "testsrc=rate=1:duration=1", mp4out
-    assert_predicate mp4out, :exist?
+    assert_path_exists mp4out
   end
 end

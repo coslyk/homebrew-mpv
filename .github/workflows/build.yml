@@ -10,7 +10,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-13, macos-14]
+        os: [macos-14, macos-15-intel]
 
     steps:
       - uses: actions/checkout@v5
@@ -24,15 +24,7 @@ jobs:
           brew tap coslyk/mpv
           brew developer on
           brew update
-          brew install nasm pkg-config fontconfig freetype gnutls libass libsoxr snappy speex xz jpeg-turbo little-cms2 docutils meson ninja libplacebo
-
-      - name: Install lld
-        if: matrix.os == 'macos-13'
-        env:
-          HOMEBREW_NO_AUTO_UPDATE: 1
-        run: |-
-          find /usr/local/bin -lname '*/Library/Frameworks/Python.framework/*' -delete
-          brew install lld
+          brew install nasm pkg-config fontconfig freetype gnutls libass libsoxr snappy speex xz jpeg-turbo little-cms2 docutils meson ninja libplacebo harfbuzz
           
       - name: Build packages
         run: |-
@@ -50,10 +42,8 @@ jobs:
         run: |
           mv ffmpeg-moonplayer--*.arm64_sonoma.bottle.1.tar.gz `ls ffmpeg-moonplayer--*.arm64_sonoma.bottle.1.tar.gz | sed 's/--/-/g'`
           mv mpv-moonplayer--*.arm64_sonoma.bottle.1.tar.gz `ls mpv-moonplayer--*.arm64_sonoma.bottle.1.tar.gz | sed 's/--/-/g'`
-          mv ffmpeg-moonplayer--*.ventura.bottle.1.tar.gz `ls ffmpeg-moonplayer--*.ventura.bottle.1.tar.gz | sed 's/--/-/g'`
-          mv mpv-moonplayer--*.ventura.bottle.1.tar.gz `ls mpv-moonplayer--*.ventura.bottle.1.tar.gz | sed 's/--/-/g'`
-          cp ffmpeg-moonplayer-*.ventura.bottle.1.tar.gz `ls ffmpeg-moonplayer-*.ventura.bottle.1.tar.gz | sed 's/ventura/sequoia/g'`
-          cp mpv-moonplayer-*.ventura.bottle.1.tar.gz `ls mpv-moonplayer-*.ventura.bottle.1.tar.gz | sed 's/ventura/sequoia/g'`
+          mv ffmpeg-moonplayer--*.sequoia.bottle.1.tar.gz `ls ffmpeg-moonplayer--*.sequoia.bottle.1.tar.gz | sed 's/--/-/g'`
+          mv mpv-moonplayer--*.sequoia.bottle.1.tar.gz `ls mpv-moonplayer--*.sequoia.bottle.1.tar.gz | sed 's/--/-/g'`
           set -e
           curl -Lo upload.sh https://github.com/probonopd/uploadtool/raw/master/upload.sh
           bash upload.sh *.tar.gz
