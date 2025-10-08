@@ -14,6 +14,12 @@ class MpvMoonplayer < Formula
       sha256 "ac7e5d8e765186af2da3bef215ec364bd387d43846ee776bd05f01f9b9e679b2"
     end
   end
+
+  bottle do
+    rebuild 1
+    sha256 cellar: :any, sequoia: "f7585d8b646669ef2b6c618150464bdbdbbb13b23cf8bbcb30e0d42eec0430b8"
+    sha256 arm64_sonoma: "6b846dee1692d15db726182a8e5d42bd8867d9debd935c9ad4e8720360826f78"
+  end
   
   keg_only "it is intended to only be used for building MoonPlayer. This formula is not recommended for daily use"
 

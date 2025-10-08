@@ -9,6 +9,12 @@ class FfmpegMoonplayer < Formula
     sha256 "b2751fccb6cc4c77708113cd78b561059b6fa904b24162fa0be2d60273d27b8e"
   end
 
+  bottle do
+    rebuild 1
+    sha256 sequoia: "fb02a268f3df6c2a87d96a6b1f0a418dd656fcdf4b198e7a7b9fefd562dbfff4"
+    sha256 arm64_sonoma: "2c8356b3bb3634cd199ff450d5a19f0214bdfd492d44e7b4cb695b6881ab2b9d"
+  end
+
   keg_only "it is intended to only be used for building MoonPlayer. This formula is not recommended for daily use"
 
   depends_on "pkgconf" => :build
