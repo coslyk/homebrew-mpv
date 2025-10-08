@@ -11,6 +11,7 @@ class FfmpegMoonplayer < Formula
 
   bottle do
     rebuild 1
+    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
     sha256 sequoia: "fb02a268f3df6c2a87d96a6b1f0a418dd656fcdf4b198e7a7b9fefd562dbfff4"
     sha256 arm64_sonoma: "2c8356b3bb3634cd199ff450d5a19f0214bdfd492d44e7b4cb695b6881ab2b9d"
   end

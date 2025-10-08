@@ -17,6 +17,7 @@ class MpvMoonplayer < Formula
 
   bottle do
     rebuild 1
+    root_url "https://github.com/coslyk/homebrew-mpv/releases/download/continuous"
     sha256 cellar: :any, sequoia: "f7585d8b646669ef2b6c618150464bdbdbbb13b23cf8bbcb30e0d42eec0430b8"
     sha256 arm64_sonoma: "6b846dee1692d15db726182a8e5d42bd8867d9debd935c9ad4e8720360826f78"
   end
