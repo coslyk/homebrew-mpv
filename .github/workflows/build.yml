@@ -40,10 +40,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mv ffmpeg-moonplayer--*.arm64_sonoma.bottle.1.tar.gz `ls ffmpeg-moonplayer--*.arm64_sonoma.bottle.1.tar.gz | sed 's/--/-/g'`
-          mv mpv-moonplayer--*.arm64_sonoma.bottle.1.tar.gz `ls mpv-moonplayer--*.arm64_sonoma.bottle.1.tar.gz | sed 's/--/-/g'`
-          mv ffmpeg-moonplayer--*.sequoia.bottle.1.tar.gz `ls ffmpeg-moonplayer--*.sequoia.bottle.1.tar.gz | sed 's/--/-/g'`
-          mv mpv-moonplayer--*.sequoia.bottle.1.tar.gz `ls mpv-moonplayer--*.sequoia.bottle.1.tar.gz | sed 's/--/-/g'`
+          mv ffmpeg-moonplayer--*.bottle.1.tar.gz `ls ffmpeg-moonplayer--*.bottle.1.tar.gz | sed 's/--/-/g'`
+          mv mpv-moonplayer--*.bottle.1.tar.gz `ls mpv-moonplayer--*.bottle.1.tar.gz | sed 's/--/-/g'`
           set -e
           curl -Lo upload.sh https://github.com/probonopd/uploadtool/raw/master/upload.sh
           bash upload.sh *.tar.gz
